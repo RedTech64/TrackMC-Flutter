@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'add_dialogue.dart';
+import 'server_card.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,12 +29,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<String> ips = [];
+  List<String> ips = ['us.mineplex.com'];
 
   @override
   void initState() {
     super.initState();
-    const oneSec = const Duration(seconds:3);
   }
 
   @override
@@ -45,16 +45,14 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-          ],
+          children: List.from(ips.map((ip) => new ServerCard(ip))),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-
+          openAddServerDialogue(context);
         },
-        tooltip: 'Increment',
+        tooltip: 'Add Server',
         child: Icon(Icons.add),
       ),
     );
@@ -67,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (BuildContext context) => new ServerAddDialogue(),
     );
     if(result != null) {
+      print(result);
       setState(() {
         ips.add(result);
       });

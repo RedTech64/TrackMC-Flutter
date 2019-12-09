@@ -24,7 +24,7 @@ class _ServerAddDialogueState extends State<ServerAddDialogue> {
       content: new TextField(
         controller: _controller,
         onChanged: (value) {
-
+          _ip =  value;
         },
       ),
       actions: <Widget>[
